@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.subsystems.Drivebase;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -49,6 +50,8 @@ public class OI {
   Joystick mDriverJoystick, mOperatorJoystick;
   Button mDriverButtonA, mDriverButtonB, mDriverButtonX, mDriverButtonY, mDriverButtonLB, mDriverButtonRB;
 
+  Drivebase mDrivebase = Drivebase.getInstance();
+
   public double mDriverLeftStickX = 0.0;
   public double mDriverLeftStickY = 0.0;
   public double mDriverRightStickX = 0.0;
@@ -64,7 +67,7 @@ public class OI {
   public OI() {
     mDriverJoystick = new Joystick(RobotMap.DRIVER_CONTROLLER_PORT);
     mOperatorJoystick = new Joystick(RobotMap.OPERATOR_CONTROLLER_PORT);
-
+    System.out.println("OI Created");
     mDriverButtonA = new JoystickButton(mDriverJoystick, RobotMap.XBOX_BUTTON_A_PORT);
     mDriverButtonRB = new JoystickButton(mDriverJoystick, RobotMap.XBOX_BUTTON_RB_PORT);
 
@@ -73,8 +76,18 @@ public class OI {
   public void run() {
     mDriverLeftStickX = mDriverJoystick.getRawAxis(RobotMap.XBOX_LEFT_STICK_AXIS_X);
     mDriverLeftStickY = mDriverJoystick.getRawAxis(RobotMap.XBOX_LEFT_STICK_AXIS_Y);
-
     mDriverRightStickX = mDriverJoystick.getRawAxis(RobotMap.XBOX_RIGHT_STICK_AXIS_X);
-    mDriverRightStickX = mDriverJoystick.getRawAxis(RobotMap.XBOX_RIGHT_STICK_AXIS_Y);
+    mDriverRightStickY = mDriverJoystick.getRawAxis(RobotMap.XBOX_RIGHT_STICK_AXIS_Y);
+
+    
+
+    mDriverLeftStickX *= RobotMap.STICK_DAMPEN_PERCENTAGE;
+    mDriverLeftStickY *= RobotMap.STICK_DAMPEN_PERCENTAGE;
+    mDriverRightStickX *= RobotMap.STICK_DAMPEN_PERCENTAGE;
+    mDriverRightStickY *= RobotMap.STICK_DAMPEN_PERCENTAGE;
+
+    //System.out.println("Left Stick: " + mDriverLeftStickX + ",  " + mDriverLeftStickY);
+    //System.out.println("Right Stick: " + mDriverRightStickX + ",  " + mDriverRightStickY);
+
   }
 }

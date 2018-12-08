@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.subsystems.Drivebase;
 
-public class DriveTankMode extends Command {
+public class DriveArcadeMode extends Command {
 
   private OI mOI = OI.getInstance();
   private Drivebase mDrivebase = Drivebase.getInstance();
 
-  public DriveTankMode() {
+  public DriveArcadeMode() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
 
@@ -26,14 +26,14 @@ public class DriveTankMode extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.println("Tank Mode: Initialize");
+    System.out.println("Arcade Mode: Initialize");
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    mDrivebase.setSpeed(mOI.mDriverLeftStickY, mOI.mDriverRightStickY);
-    System.out.println("Tank Mode: Execute");
+    mDrivebase.setSpeedTurn(mOI.mDriverLeftStickY, mOI.mDriverRightStickX);
+    System.out.println("Arcade Mode: Execute");
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -45,7 +45,7 @@ public class DriveTankMode extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    System.out.println("Tank Mode: End");
+    System.out.println("Arcade Mode: End");
   }
 
   // Called when another command which requires one or more of the same
@@ -53,6 +53,6 @@ public class DriveTankMode extends Command {
   @Override
   protected void interrupted() {
     mDrivebase.setSpeed(0.0, 0.0);
-    System.out.println("Tank Mode: Interrupted");
+    System.out.println("Arcade Mode: Interrupted");
   }
 }

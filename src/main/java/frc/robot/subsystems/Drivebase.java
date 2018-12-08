@@ -42,8 +42,11 @@ public class Drivebase extends Subsystem {
 
     mRightDriveMotor1 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_1);
     mRightDriveMotor2 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_2);
-    mRightDriveMotor3 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_3);
-    
+    mRightDriveMotor3 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_3);    
+
+    mLeftDriveMotor1.setInverted(true);
+    mLeftDriveMotor2.setInverted(true);
+    mLeftDriveMotor3.setInverted(true);
   }
 
   public void setSpeedTurn(double speed, double turn) {

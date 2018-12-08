@@ -49,4 +49,5 @@ public class RobotMap {
   public static final int XBOX_RIGHT_STICK_AXIS_X = 4;
   public static final int XBOX_RIGHT_STICK_AXIS_Y = 5;
 
+  public static final double STICK_DAMPEN_PERCENTAGE = .50;
 }
